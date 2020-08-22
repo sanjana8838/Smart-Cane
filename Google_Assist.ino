@@ -5,39 +5,23 @@
 
 /************************* WiFi Access Point *********************************/
 
-#define WLAN_SSID       "Sana's iPhone"
-#define WLAN_PASS       "sanjana8838"
+#define WLAN_SSID       "Sanjana's iPhone"
+#define WLAN_PASS       "sanjana"
 
 /************************* Adafruit.io Setup *********************************/
 
 #define AIO_SERVER      "io.adafruit.com"
 #define AIO_SERVERPORT  1883                   // use 8883 for SSL
 #define AIO_USERNAME    "sanjanaramesh" //username from adafruit
-#define AIO_KEY         "2c35408943444b079177ec69cf26080b"  //key from adafruit project dashboard
+#define AIO_KEY         "2c35408943177ec69cf26080b"  //key from adafruit project dashboard
 
-/************ Global State (you don't need to change this!) ******************/
-
-// Create an ESP8266 WiFiClient class to connect to the MQTT server.
 WiFiClient client;
-// or... use WiFiFlientSecure for SSL
-//WiFiClientSecure client;
 
-// Setup the MQTT client class by passing in the WiFi client and MQTT server and login details.
 Adafruit_MQTT_Client mqtt(&client, AIO_SERVER, AIO_SERVERPORT, AIO_USERNAME, AIO_KEY);
 
-/****************************** Feeds ***************************************/
 
-// Setup a feed called 'photocell' for publishing.
-// Notice MQTT paths for AIO follow the form: <username>/feeds/<feedname>
-//Adafruit_MQTT_Publish photocell = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/photocell");
-
-// Setup a feed called 'onoff' for subscribing to changes.
 Adafruit_MQTT_Subscribe onoffbutton = Adafruit_MQTT_Subscribe(&mqtt, AIO_USERNAME "/feeds/switch1");
 
-/*************************** Sketch Code ************************************/
-
-// Bug workaround for Arduino 1.6.6, it seems to need a function declaration
-// for some reason (only affects ESP8266, likely an arduino-builder bug).
 void MQTT_connect();
 
 void setup() {
